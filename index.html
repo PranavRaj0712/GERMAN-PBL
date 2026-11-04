@@ -1,1 +1,305 @@
-i
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eine Reise nach Deutschland | Team Funke German PBL Project</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FAF8F5',
+                            100: '#F4EFEA',
+                            200: '#E8DFD5',
+                            300: '#D6C7B7',
+                        },
+                        charcoal: {
+                            800: '#2D2D2D',
+                            900: '#1A1A1A',
+                            950: '#111111',
+                        },
+                        german: {
+                            gold: '#C5A059',
+                            goldHover: '#B08C45',
+                            red: '#A61C1C',
+                            redDark: '#851414',
+                            black: '#111111'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* Hide the visible scrollbar while keeping scrolling enabled */
+        html {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* Glassmorphism & Soft Shadows */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        
+        .shadow-magazine {
+            box-shadow: 0 10px 30px -5px rgba(26, 26, 26, 0.08), 0 4px 12px -2px rgba(26, 26, 26, 0.04);
+        }
+        
+        /* Card Hover Elevate */
+        .hover-elevate {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-elevate:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -10px rgba(26, 26, 26, 0.12);
+        }
+
+        /* German Flag Accent Stripe */
+        .flag-accent-bar {
+            background: linear-gradient(90deg, #111111 33.33%, #A61C1C 33.33%, #A61C1C 66.66%, #C5A059 66.66%);
+        }
+
+        /* Timeline Connector */
+        .timeline-line {
+            background: linear-gradient(180deg, #C5A059 0%, #A61C1C 50%, #111111 100%);
+        }
+
+        /* Modal Smooth Zoom */
+        .modal-body {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    
+        .modal-tab-content::-webkit-scrollbar { width: 6px; }
+        .modal-tab-content::-webkit-scrollbar-track { background: rgba(255,255,255,.05); border-radius: 8px; }
+        .modal-tab-content::-webkit-scrollbar-thumb { background: rgba(197,160,89,.4); border-radius: 8px; }
+        .tab-btn.active { color: #C5A059; border-bottom: 2px solid #C5A059; background: rgba(197,160,89,.1); }
+        .modal-tab-content { scrollbar-width: thin; scrollbar-color: rgba(197,160,89,.4) transparent; }
+
+    </style>
+</head>
+<body class="bg-cream-50 text-charcoal-900 font-sans selection:bg-german-gold selection:text-white antialiased relative">
+<!-- Top Scroll Progress Bar -->
+<div class="fixed top-0 left-0 w-full h-1 z-50 bg-cream-200/50">
+<div class="h-full flag-accent-bar w-0 transition-all duration-100" id="scroll-progress"></div>
+</div>
+<!-- STICKY NAVIGATION BAR -->
+<header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-4 md:px-8" id="navbar">
+<div class="max-w-7xl mx-auto glass-card rounded-full px-6 py-3 flex items-center justify-between shadow-magazine">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 group" href="#hero">
+<div class="w-9 h-9 rounded-full bg-charcoal-900 flex items-center justify-center text-german-gold font-serif font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    F
+                </div>
+<div class="flex flex-col">
+<span class="font-serif font-bold text-base leading-none text-charcoal-900 tracking-tight">Team Funke</span>
+<span class="text-[10px] tracking-widest text-german-gold uppercase font-semibold mt-1">Reise nach Deutschland</span>
+</div>
+</a>
+<!-- Desktop Links -->
+<nav class="hidden xl:flex items-center gap-5 text-xs uppercase tracking-wider font-semibold text-charcoal-800">
+<a class="hover:text-german-gold transition-colors" href="#intro">About</a>
+<a class="hover:text-german-gold transition-colors" href="#attractions">Attractions</a>
+<a class="hover:text-german-gold transition-colors" href="#history">History</a>
+<a class="hover:text-german-gold transition-colors" href="#itinerary">7-Day Itinerary</a>
+<a class="hover:text-german-gold transition-colors" href="#transport">Transport</a>
+<a class="hover:text-german-gold transition-colors" href="#culture">Culture</a>
+<a class="hover:text-german-gold transition-colors" href="#food">Food</a>
+<a class="hover:text-german-gold transition-colors" href="#accommodation">Stays</a>
+<a class="hover:text-german-gold transition-colors" href="#shopping">Shopping</a>
+<a class="hover:text-german-gold transition-colors" href="#nature">Nature</a>
+</nav>
+<!-- CTA & Mobile Toggle -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex px-4 py-2 rounded-full bg-charcoal-900 text-cream-50 hover:bg-german-gold transition-colors text-xs font-semibold tracking-wider uppercase" href="#team">
+                    Team Funke
+                </a>
+<button class="xl:hidden w-10 h-10 rounded-full bg-cream-100 flex items-center justify-center text-charcoal-900 hover:bg-cream-200 transition-colors" id="mobile-menu-btn">
+<i class="fa-solid fa-bars text-base"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Dropdown -->
+<div class="hidden xl:hidden max-w-7xl mx-auto mt-2 glass-card rounded-2xl p-6 shadow-2xl transition-all duration-300" id="mobile-menu">
+<div class="grid grid-cols-2 gap-4 text-xs font-semibold uppercase tracking-wider text-charcoal-800">
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#intro">About Germany</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#attractions">Attractions</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#history">History</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#itinerary">7-Day Itinerary</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#transport">Transport</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#culture">Culture &amp; Vocab</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#food">Gastronomy</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#accommodation">Accommodation</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#shopping">Shopping</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#nature">Nature &amp; Alps</a>
+<a class="mobile-link py-2 border-b border-cream-200 hover:text-german-gold" href="#team">Project Team</a>
+</div>
+</div>
+</header>
+<!-- 1. HERO SECTION -->
+<section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden" id="hero">
+<!-- Hero Photographic Background -->
+<div class="absolute inset-0 z-0">
+<img alt="Neuschwanstein Castle Germany" class="w-full h-full object-cover filter brightness-[0.72] contrast-[1.05]" src="https://images.unsplash.com/photo-1544085311-11a028465b03?auto=format&amp;fit=crop&amp;w=2000&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cream-50 via-charcoal-950/40 to-charcoal-950/70"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto text-center text-white px-4 flex flex-col items-center">
+<!-- German Flag Badge Accent -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-charcoal-950/80 border border-german-gold/40 text-cream-50 text-xs font-medium uppercase tracking-widest mb-6 backdrop-blur-md shadow-lg">
+<span class="w-2.5 h-2.5 rounded-full flag-accent-bar inline-block"></span>
+                German PBL Educational Showcase • Team Funke
+            </div>
+<h1 class="font-serif text-5xl sm:text-6xl md:text-8xl font-normal tracking-tight text-white mb-6 leading-[1.05]">
+                Entdecke <span class="italic font-serif font-light text-german-gold">Deutschland</span>
+</h1>
+<p class="text-cream-100 text-lg sm:text-xl md:text-2xl font-light max-w-3xl leading-relaxed mb-10 text-shadow-sm">
+                Discover Germany – A Journey Through History, Culture and Nature. An educational travel experience curated across four iconic cities.
+            </p>
+<div class="flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto">
+<a class="w-full sm:w-auto px-8 py-4 rounded-full bg-german-gold hover:bg-german-goldHover text-charcoal-950 font-bold text-xs uppercase tracking-widest transition-all shadow-xl hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-3" href="#intro">
+                    Explore Germany <i class="fa-solid fa-compass"></i>
+</a>
+<a class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold text-xs uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-3" href="#itinerary">
+                    View Our Itinerary <i class="fa-solid fa-route"></i>
+</a>
+</div>
+<!-- Stats Banner Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 w-full max-w-4xl">
+<div class="glass-card rounded-2xl p-4 text-center border-t-2 border-german-gold shadow-magazine">
+<span class="block font-serif text-3xl sm:text-4xl font-bold text-charcoal-900">7 Days</span>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-charcoal-800">Planned Journey</span>
+</div>
+<div class="glass-card rounded-2xl p-4 text-center border-t-2 border-german-red shadow-magazine">
+<span class="block font-serif text-3xl sm:text-4xl font-bold text-charcoal-900">4 Cities</span>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-charcoal-800">Berlin, Hamburg, Cologne, Munich</span>
+</div>
+<div class="glass-card rounded-2xl p-4 text-center border-t-2 border-charcoal-900 shadow-magazine">
+<span class="block font-serif text-3xl sm:text-4xl font-bold text-charcoal-900">1 Country</span>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-charcoal-800">Central European Heart</span>
+</div>
+<div class="glass-card rounded-2xl p-4 text-center border-t-2 border-german-gold shadow-magazine">
+<span class="block font-serif text-3xl sm:text-4xl font-bold text-charcoal-900">∞ Memories</span>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-charcoal-800">Culture &amp; Heritage</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. INTRODUCTION TO GERMANY -->
+<section class="py-24 px-4 max-w-7xl mx-auto" id="intro">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-german-gold block mb-2">PBL Topic 1 • General Overview</span>
+<h2 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal-900 mb-4">Introduction to Germany</h2>
+<div class="w-16 h-1 flag-accent-bar mx-auto rounded-full mb-6"></div>
+<p class="text-charcoal-800 text-base leading-relaxed">
+                Located in the heart of Europe, the Federal Republic of Germany seamlessly bridges centuries of deep historical legacy with modern technological innovation and natural grandeur.
+            </p>
+</div>
+<!-- Fast Facts Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-landmark text-german-gold text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Official Name</span>
+<span class="font-serif font-bold text-base text-charcoal-900">Federal Republic of Germany</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">(Bundesrepublik Deutschland)</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-city text-german-red text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Capital &amp; Largest City</span>
+<span class="font-serif font-bold text-base text-charcoal-900">Berlin</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">Pop: 3.8 Million</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-language text-german-gold text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Official Language</span>
+<span class="font-serif font-bold text-base text-charcoal-900">German (Deutsch)</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">Germanic Language Family</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-euro-sign text-charcoal-900 text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Currency</span>
+<span class="font-serif font-bold text-base text-charcoal-900">Euro (€)</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">EUR / Card &amp; Cash</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-users text-german-red text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Population</span>
+<span class="font-serif font-bold text-base text-charcoal-900">~84.4 Million</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">Most populous in EU</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-earth-europe text-german-gold text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Geographic Location</span>
+<span class="font-serif font-bold text-base text-charcoal-900">Central Europe</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">357,022 km² Area</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-building-columns text-charcoal-900 text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Government</span>
+<span class="font-serif font-bold text-base text-charcoal-900">Federal Parliamentary Republic</span>
+<span class="text-xs text-charcoal-800 block mt-0.5">16 Federal States (Länder)</span>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover-elevate">
+<i class="fa-solid fa-map-location-dot text-german-red text-xl mb-2"></i>
+<span class="text-[11px] font-bold uppercase text-charcoal-800 block">Neighbours (9 Countries)</span>
+<span class="font-serif font-bold text-xs text-charcoal-900 leading-tight block">DK, PL, CZ, AT, CH, FR, LU, BE, NL</span>
+</div>
+</div>
+<!-- Editorial Storytelling Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white rounded-3xl p-8 sm:p-12 border border-cream-200 shadow-magazine">
+<div class="lg:col-span-6 space-y-6">
+<span class="px-3 py-1 rounded-full bg-cream-100 text-german-gold text-xs font-bold uppercase tracking-wider inline-block">The European Powerhouse</span>
+<h3 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900 leading-tight">Engineering, Philosophy &amp; European Unity</h3>
+<p class="text-charcoal-800 leading-relaxed text-sm sm:text-base">
+                    Germany is renowned globally as the birthplace of pioneering innovators, world-renowned composers like Beethoven and Bach, and groundbreaking engineers who shaped the modern automotive industry (BMW, Mercedes-Benz, Porsche, Audi).
+                </p>
+<p class="text-charcoal-800 leading-relaxed text-sm sm:text-base">
+                    As a founding member of the European Union, Germany plays a pivotal role in European economics, environmental policy, and cultural preservation. Its 16 federal states each maintain unique cultural identities—from the maritime hanseatic traditions of Hamburg to the alpine folk customs of Bavaria.
+                </p>
+<div class="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-charcoal-800">
+<span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-german-gold"></i> UNESCO World Heritage Sites (52+)</span>
+<span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-german-gold"></i> Leader in Green Energy</span>
+<span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-german-gold"></i> High-Speed Transit Network</span>
+</div>
+</div>
+<div class="lg:col-span-6 relative">
+<div class="rounded-2xl overflow-hidden shadow-2xl relative h-[380px] group">
+<img alt="Map of Germany showing its regions and physical geography" class="w-full h-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-700" src="https://thumbs.dreamstime.com/z/high-detailed-germany-physical-map-regions-rivers-lakes-mountains-topography-vector-illustration-germany-map-high-261610921.jpg"/>
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 text-white">
+<span class="text-xs uppercase tracking-widest text-german-gold font-bold">Central European Geography</span>
+<h4 class="font-serif text-2xl font-bold">From the North Sea to the Alps</h4>
+</div>
+</div>
+</div>
+</div>
+<p class="mt-4 text-gray-600 leading-relaxed">Germany’s position in the heart of Europe has helped shape its identity as a meeting point of different cultures, ideas and trade routes. The country shares borders with nine neighbouring nations, and this central location makes it an important link between northern, southern, eastern and western Europe. Its regions are distinct, with coastal landscapes in the north, forests and river valleys in the centre, and the Alps rising in the south.</p><p class="mt-4 text-gray-600 leading-relaxed">Modern Germany combines a strong sense of regional identity with a shared national culture. Each federal state has its own traditions, local specialities and historical landmarks, while common institutions, education and transport networks connect the country. This balance between regional variety and national cooperation is an important part of understanding Germany today.</p></section>
+<!-- 3. FAMOUS TOURIST ATTRACTIONS -->
+<section class="py-24 bg-cream-100/60 border-y border-cream-200 px-4" id="attractions">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-german-gold block m
